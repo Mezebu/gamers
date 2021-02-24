@@ -33,7 +33,7 @@ const RegistrationPage = () => {
   const onEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
-    setEmailValid(isValidEmail(e.target.value));
+    setEmailValid(isValidEmail(value));
   };
 
   const onPasswordChange = (e) => {
