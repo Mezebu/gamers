@@ -8,21 +8,45 @@ import LeftIcon from "../assets/images/LeftIcon.png";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const RegistrationPage = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
+  const [canDisplayEmailError, setCanDisplayEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordValid, setPasswordValid] = useState("");
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [canDisplayPasswordError, setCanDisplayPasswordError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordValid, setConfirmPasswordValid] = useState("");
+  const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
+  const [
+    canDisplayConfirmPasswordError,
+    setCanDisplayConfirmPasswordError,
+  ] = useState(false);
+  const [signInError, setSignInError] = useState("");
 
-  const isFormValid = emailValid && passwordValid && confirmPasswordValid;
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+
+  const isFormValid =
+    emailValid && passwordValid && confirmPasswordValid && agreeToTerms;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    history.push("/success");
+
+    axios
+      .post("https://603bb33df4333a0017b66d36.mockapi.io/api/v1/login", {
+        username: email,
+        password,
+      })
+      .then(function (response) {
+        history.push("/success");
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setSignInError(error.message);
+      });
   };
 
   const isValidEmail = (email) => {
@@ -89,7 +113,12 @@ const RegistrationPage = () => {
             </div>
 
             <div className="form-inputs">
-              <label className="form-label">Email address</label>
+              <label className="form-label">
+                Email address
+                {!emailValid && canDisplayEmailError && (
+                  <div className="reg-input-error-message">Invalid email</div>
+                )}
+              </label>
               <input
                 className="form-input"
                 type="text"
@@ -97,10 +126,20 @@ const RegistrationPage = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={onEmailChange}
+                onBlur={() =>
+                  !canDisplayEmailError && setCanDisplayEmailError(true)
+                }
               />
             </div>
             <div className="form-inputs">
-              <label className="form-label">Create password</label>
+              <label className="form-label">
+                Create password
+                {!passwordValid && canDisplayPasswordError && (
+                  <div className="reg-input-error-message">
+                    Invalid password
+                  </div>
+                )}
+              </label>
               <input
                 className="form-input"
                 type="password"
@@ -108,10 +147,20 @@ const RegistrationPage = () => {
                 placeholder="Enter your password"
                 value={password}
                 onChange={onPasswordChange}
+                onBlur={() =>
+                  !canDisplayPasswordError && setCanDisplayPasswordError(true)
+                }
               />
             </div>
             <div className="form-inputs">
-              <label className="form-label">Repeat password</label>
+              <label className="form-label">
+                Repeat password{" "}
+                {!confirmPasswordValid && canDisplayConfirmPasswordError && (
+                  <div className="reg-input-error-message">
+                    Your passwords don't match
+                  </div>
+                )}
+              </label>
               <input
                 className="form-input"
                 type="password"
@@ -119,12 +168,34 @@ const RegistrationPage = () => {
                 placeholder="Repeat password"
                 value={confirmPassword}
                 onChange={onPasswordRepeat}
+                onBlur={() =>
+                  !canDisplayConfirmPasswordError &&
+                  setCanDisplayConfirmPasswordError(true)
+                }
               />
             </div>
             <div className="form-inputs">
-              <div className="radio">
-                <input className="radio-btn" type="radio" />I agree to terms &
-                conditions
+              <div className="check-btn">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value={agreeToTerms}
+                    id="flexCheckDefault"
+                    onChange={() => {
+                      setAgreeToTerms(!agreeToTerms);
+                    }}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                    I agree to terms & conditions
+                  </label>
+                  {signInError && (
+                    <div className="input-error-message">{signInError}</div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="form-inputs">

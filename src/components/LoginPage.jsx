@@ -6,19 +6,36 @@ import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(false);
+  const [canDisplayEmailError, setCanDisplayEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordValid, setPasswordValid] = useState("");
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [canDisplayPasswordError, setCanDisplayPasswordError] = useState(false);
+  const [signInError, setSignInError] = useState("");
 
   const isFormValid = emailValid && passwordValid;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    history.push("/dashboard");
+
+    axios
+      .post("https://603bb33df4333a0017b66d36.mockapi.io/api/v1/login", {
+        username: email,
+        password,
+      })
+      .then(function (response) {
+        history.push("/dashboard");
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setSignInError(error.message);
+      });
   };
 
   const isValidEmail = (email) => {
@@ -77,7 +94,12 @@ const LoginPage = () => {
         </div>
         <form onSubmit={onSubmit} className="login-form">
           <div className="login-form-inputs">
-            <label className="login-form-label">Your email</label>
+            <label className="login-form-label">
+              Your email
+              {!emailValid && canDisplayEmailError && (
+                <div className="input-error-message">Invalid email</div>
+              )}
+            </label>
             <input
               className="login-form-input"
               type="text"
@@ -85,10 +107,18 @@ const LoginPage = () => {
               placeholder="Enter your email"
               value={email}
               onChange={onEmailChange}
+              onBlur={() =>
+                !canDisplayEmailError && setCanDisplayEmailError(true)
+              }
             />
           </div>
           <div className="login-form-inputs">
-            <label className="login-form-label-log">Password</label>
+            <label className="login-form-label">
+              Password{" "}
+              {!passwordValid && canDisplayPasswordError && (
+                <div className="input-error-message">Invalid password</div>
+              )}
+            </label>
             <input
               className="login-form-input"
               type="password"
@@ -96,6 +126,9 @@ const LoginPage = () => {
               placeholder="Enter your password"
               value={password}
               onChange={onPasswordChange}
+              onBlur={() =>
+                !canDisplayPasswordError && setCanDisplayPasswordError(true)
+              }
             />
           </div>
           <div className="check-box">
@@ -111,6 +144,9 @@ const LoginPage = () => {
               </label>
             </div>
           </div>
+          {signInError && (
+            <div className="input-error-message">{signInError}</div>
+          )}
           <div className="login-form-inputs">
             <Button
               type="submit"
