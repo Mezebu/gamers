@@ -344,3 +344,22 @@ input:focus {
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 480px) {
+  .login-page {
+    width: 400px;
+    background: red;
+  }
+  .login-page-left {
+    display: none;
+  }
+  .login-page-right {
+    width: 100%;
+  }
+  .login-form {
+    width: auto;
+  }
+  .check-box {
+    margin-right: 0;
+  }
+}

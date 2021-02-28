@@ -114,7 +114,7 @@ const LoginPage = () => {
           </div>
           <div className="login-form-inputs">
             <label className="login-form-label">
-              Password{" "}
+              Password
               {!passwordValid && canDisplayPasswordError && (
                 <div className="input-error-message">Invalid password</div>
               )}
