@@ -154,7 +154,7 @@ const RegistrationPage = () => {
             </div>
             <div className="form-inputs">
               <label className="form-label">
-                Repeat password{" "}
+                Repeat password
                 {!confirmPasswordValid && canDisplayConfirmPasswordError && (
                   <div className="reg-input-error-message">
                     Your passwords don't match
