@@ -400,6 +400,9 @@ html {
   .check-box {
     margin-right: 0;
   }
+  .form-text > p > br {
+    display: none;
+  }
   .reg-input-error-message {
     margin-right: 90px;
     font-size: 10px;
