@@ -79,16 +79,36 @@ const LoginPage = () => {
           <p>Go inside the best gamers social network!</p>
           <div className="socials">
             <div className="social-icons">
-              <FcGoogle />
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                <FcGoogle />
+              </a>
             </div>
             <div className="social-icons">
-              <FaTwitter />
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaTwitter />
+              </a>
             </div>
             <div className="social-icons">
-              <FaLinkedin />
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin />
+              </a>
             </div>
             <div className="social-icons">
-              <FaGithub />
+              <a
+                href="https://github.com/Mezebu"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
+              </a>
             </div>
           </div>
         </div>
@@ -101,7 +121,7 @@ const LoginPage = () => {
               )}
             </label>
             <input
-              className="login-form-input"
+              className={`login-form-input ${emailValid ? "" : "error-input"}`}
               type="text"
               name="email"
               placeholder="Enter your email"
@@ -120,7 +140,9 @@ const LoginPage = () => {
               )}
             </label>
             <input
-              className="login-form-input"
+              className={`login-form-input ${
+                passwordValid ? "" : "error-input"
+              }`}
               type="password"
               name="password"
               placeholder="Enter your password"

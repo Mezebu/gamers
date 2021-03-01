@@ -340,6 +340,10 @@ html {
   color: red;
 }
 
+.error-input {
+  border: 1px solid red;
+}
+
 .login-form-label {
   display: flex;
   justify-content: space-between;
@@ -409,6 +413,5 @@ html {
   }
   .success-text {
     font-size: 12px;
-    color: blue;
   }
 }

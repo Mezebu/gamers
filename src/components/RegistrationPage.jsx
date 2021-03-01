@@ -120,7 +120,7 @@ const RegistrationPage = () => {
                 )}
               </label>
               <input
-                className="form-input"
+                className={`form-input ${emailValid ? "" : "error-input"}`}
                 type="text"
                 name="email"
                 placeholder="Enter your email"
@@ -141,7 +141,7 @@ const RegistrationPage = () => {
                 )}
               </label>
               <input
-                className="form-input"
+                className={`form-input ${passwordValid ? "" : "error-input"}`}
                 type="password"
                 name="password"
                 placeholder="Enter your password"
@@ -162,7 +162,9 @@ const RegistrationPage = () => {
                 )}
               </label>
               <input
-                className="form-input"
+                className={`form-input ${
+                  confirmPasswordValid ? "" : "error-input"
+                }`}
                 type="password"
                 name="confirmpassword"
                 placeholder="Repeat password"
