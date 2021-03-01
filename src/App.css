@@ -188,10 +188,10 @@ html {
   border: 1px solid #c8d7f0;
   border-radius: 4px;
 }
-input:focus {
+.form-input:focus {
   outline: none !important;
   border-color: rgb(209, 209, 247);
-  box-shadow: 0 0 3px rgb(192, 192, 248);
+  box-shadow: 0 0 5px rgb(192, 192, 248);
 }
 
 .check-btn {
@@ -307,10 +307,10 @@ input:focus {
   border-radius: 4px;
 }
 
-.login-input:focus {
+.login-form-input:focus {
   outline: none !important;
   border-color: rgb(221, 221, 248);
-  box-shadow: 0 0 3px rgb(219, 219, 245);
+  box-shadow: 0 0 5px rgb(219, 219, 245);
 }
 
 .check-box {
@@ -345,20 +345,66 @@ input:focus {
   justify-content: space-between;
 }
 
-@media (max-width: 480px) {
-  .login-page {
-    width: 400px;
+/* Media Queries */
+
+@media (max-width: 768px) {
+  .login-page,
+  .reg-container,
+  .success-page {
+    width: 500px;
   }
-  .login-page-left {
+  .login-page-left,
+  .reg-content-left {
     display: none;
   }
-  .login-page-right {
+  .login-page-right,
+  .reg-content-right {
+    width: 100%;
+    background: url("./assets/images/Console.png");
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 100%;
+  }
+
+  .login-form,
+  .form {
+    width: auto;
+  }
+  .reg-input-error-message {
+    margin-right: 10px;
+    font-size: 11px;
+  }
+  .success-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page,
+  .reg-container,
+  .success-page {
+    width: 400px;
+  }
+  .login-page-left,
+  .reg-content-left {
+    display: none;
+  }
+  .login-page-right,
+  .reg-content-right {
     width: 100%;
   }
-  .login-form {
+  .login-form,
+  .form {
     width: auto;
   }
   .check-box {
     margin-right: 0;
+  }
+  .reg-input-error-message {
+    margin-right: 90px;
+    font-size: 10px;
+  }
+  .success-text {
+    font-size: 12px;
   }
 }
