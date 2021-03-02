@@ -14,20 +14,22 @@ const SuccessPage = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div className="success-page">
-          <div className="success-items">
-            <BsCheckCircle className="bs-check-icon" />
-            <h3>Registration Successful</h3>
-            <p className="success-text">
-              <FaCheckCircle className="fa-check-icon" />
-              Thank you.
-              <br />
-              Registration has been successfully completed.
-              <br /> Proceed to login.
-            </p>
-            <Button type="submit" className="btn-primary btn btn-primary">
-              Proceed
-            </Button>
+        <div className="success-page-container">
+          <div className="success-page">
+            <div className="success-items">
+              <BsCheckCircle className="bs-check-icon" />
+              <h3>Registration Successful</h3>
+              <p className="success-text">
+                <FaCheckCircle className="fa-check-icon" />
+                Thank you.
+                <br />
+                Registration has been successfully completed.
+                <br /> Proceed to login.
+              </p>
+              <Button type="submit" className="btn-primary btn btn-primary">
+                Proceed
+              </Button>
+            </div>
           </div>
         </div>
       </form>

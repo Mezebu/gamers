@@ -75,142 +75,144 @@ const RegistrationPage = () => {
   return (
     <>
       <div className="reg-container">
-        <div className="reg-content-left">
-          <img src={Console} alt="img" className="left-image" />
-          <img src={Rectangle} alt="img" className="left-image" />
-          <div className="content-left">
-            <img src={Logo} alt="logo" />
-            <div className="dots">
-              <img src={Group} alt="group" />
-            </div>
-            <div className="content-text">
-              <img src={Quotes} alt="quotes" />
-            </div>
-            <p>
-              He who asks is a fool for five minutes, but he who does not ask
-              remains a fool forever.
-            </p>
-            <p className="proverb-author">Chinese Proverb</p>
-            <div className="left-icon">
-              <img src={LeftIcon} alt="icon" />
-            </div>
-          </div>
-        </div>
-        <div className="reg-content-right">
-          <div>
-            <Link to="/" className="right-nav-icon">
-              <IoIosArrowBack />
-              <p className="icon-text">Back</p>
-            </Link>
-          </div>
-          <form onSubmit={onSubmit} className="form">
-            <div className="form-text">
-              <h3>Register Individual Account!</h3>
+        <div className="reg-page">
+          <div className="reg-content-left">
+            <img src={Console} alt="img" className="left-image" />
+            <img src={Rectangle} alt="img" className="left-image" />
+            <div className="content-left">
+              <img src={Logo} alt="logo" />
+              <div className="dots">
+                <img src={Group} alt="group" />
+              </div>
+              <div className="content-text">
+                <img src={Quotes} alt="quotes" />
+              </div>
               <p>
-                For the purpose of gamers regulation, your
-                <br /> details are required
+                He who asks is a fool for five minutes, but he who does not ask
+                remains a fool forever.
               </p>
-            </div>
-
-            <div className="form-inputs">
-              <label className="form-label">
-                Email address
-                {!emailValid && canDisplayEmailError && (
-                  <div className="reg-input-error-message">Invalid email</div>
-                )}
-              </label>
-              <input
-                className={`form-input ${emailValid ? "" : "error-input"}`}
-                type="text"
-                name="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={onEmailChange}
-                onBlur={() =>
-                  !canDisplayEmailError && setCanDisplayEmailError(true)
-                }
-              />
-            </div>
-            <div className="form-inputs">
-              <label className="form-label">
-                Create password
-                {!passwordValid && canDisplayPasswordError && (
-                  <div className="reg-input-error-message">
-                    Invalid password
-                  </div>
-                )}
-              </label>
-              <input
-                className={`form-input ${passwordValid ? "" : "error-input"}`}
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={onPasswordChange}
-                onBlur={() =>
-                  !canDisplayPasswordError && setCanDisplayPasswordError(true)
-                }
-              />
-            </div>
-            <div className="form-inputs">
-              <label className="form-label">
-                Repeat password{" "}
-                {!confirmPasswordValid && canDisplayConfirmPasswordError && (
-                  <div className="reg-input-error-message">
-                    Your passwords don't match
-                  </div>
-                )}
-              </label>
-              <input
-                className={`form-input ${
-                  confirmPasswordValid ? "" : "error-input"
-                }`}
-                type="password"
-                name="confirmpassword"
-                placeholder="Repeat password"
-                value={confirmPassword}
-                onChange={onPasswordRepeat}
-                onBlur={() =>
-                  !canDisplayConfirmPasswordError &&
-                  setCanDisplayConfirmPasswordError(true)
-                }
-              />
-            </div>
-            <div className="form-inputs">
-              <div className="check-btn">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value={agreeToTerms}
-                    id="flexCheckDefault"
-                    onChange={() => {
-                      setAgreeToTerms(!agreeToTerms);
-                    }}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexCheckDefault"
-                  >
-                    I agree to terms & conditions
-                  </label>
-                  {signInError && (
-                    <div className="input-error-message">{signInError}</div>
-                  )}
-                </div>
+              <p className="proverb-author">Chinese Proverb</p>
+              <div className="left-icon">
+                <img src={LeftIcon} alt="icon" />
               </div>
             </div>
-            <div className="form-inputs">
-              <Button
-                type="submit"
-                variant="primary"
-                className="form-btn-primary"
-                disabled={!isFormValid}
-              >
-                <p className="btn-text"> Register Account</p>
-              </Button>
+          </div>
+          <div className="reg-content-right">
+            <div>
+              <Link to="/" className="right-nav-icon">
+                <IoIosArrowBack />
+                <p className="icon-text">Back</p>
+              </Link>
             </div>
-          </form>
+            <form onSubmit={onSubmit} className="form">
+              <div className="form-text">
+                <h3>Register Individual Account!</h3>
+                <p>
+                  For the purpose of gamers regulation, your
+                  <br /> details are required
+                </p>
+              </div>
+
+              <div className="form-inputs">
+                <label className="form-label">
+                  Email address
+                  {!emailValid && canDisplayEmailError && (
+                    <div className="reg-input-error-message">Invalid email</div>
+                  )}
+                </label>
+                <input
+                  className={`form-input ${emailValid ? "" : "error-input"}`}
+                  type="text"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={onEmailChange}
+                  onBlur={() =>
+                    !canDisplayEmailError && setCanDisplayEmailError(true)
+                  }
+                />
+              </div>
+              <div className="form-inputs">
+                <label className="form-label">
+                  Create password
+                  {!passwordValid && canDisplayPasswordError && (
+                    <div className="reg-input-error-message">
+                      Invalid password
+                    </div>
+                  )}
+                </label>
+                <input
+                  className={`form-input ${passwordValid ? "" : "error-input"}`}
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={onPasswordChange}
+                  onBlur={() =>
+                    !canDisplayPasswordError && setCanDisplayPasswordError(true)
+                  }
+                />
+              </div>
+              <div className="form-inputs">
+                <label className="form-label">
+                  Repeat password{" "}
+                  {!confirmPasswordValid && canDisplayConfirmPasswordError && (
+                    <div className="reg-input-error-message">
+                      Your passwords don't match
+                    </div>
+                  )}
+                </label>
+                <input
+                  className={`form-input ${
+                    confirmPasswordValid ? "" : "error-input"
+                  }`}
+                  type="password"
+                  name="confirmpassword"
+                  placeholder="Repeat password"
+                  value={confirmPassword}
+                  onChange={onPasswordRepeat}
+                  onBlur={() =>
+                    !canDisplayConfirmPasswordError &&
+                    setCanDisplayConfirmPasswordError(true)
+                  }
+                />
+              </div>
+              <div className="form-inputs">
+                <div className="check-btn">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={agreeToTerms}
+                      id="flexCheckDefault"
+                      onChange={() => {
+                        setAgreeToTerms(!agreeToTerms);
+                      }}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexCheckDefault"
+                    >
+                      I agree to terms & conditions
+                    </label>
+                    {signInError && (
+                      <div className="input-error-message">{signInError}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="form-inputs">
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="form-btn-primary"
+                  disabled={!isFormValid}
+                >
+                  <p className="btn-text"> Register Account</p>
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>
