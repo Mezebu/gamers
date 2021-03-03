@@ -195,9 +195,6 @@ const RegistrationPage = () => {
                     >
                       I agree to terms & conditions
                     </label>
-                    {signInError && (
-                      <div className="input-error-message">{signInError}</div>
-                    )}
                   </div>
                 </div>
               </div>
@@ -210,6 +207,9 @@ const RegistrationPage = () => {
                 >
                   <p className="btn-text"> Register Account</p>
                 </Button>
+                {signInError && (
+                  <div className="reg-network-error-message">{signInError}</div>
+                )}
               </div>
             </form>
           </div>

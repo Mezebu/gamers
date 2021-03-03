@@ -174,7 +174,7 @@ const LoginPage = () => {
               </div>
             </div>
             {signInError && (
-              <div className="input-error-message">{signInError}</div>
+              <div className="network-error-message">{signInError}</div>
             )}
             <div className="login-form-inputs">
               <Button

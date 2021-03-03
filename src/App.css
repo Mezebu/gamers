@@ -403,6 +403,18 @@ html {
   color: red;
 }
 
+.network-error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.reg-network-error-message {
+  color: red;
+  font-size: 13px;
+  margin-left: 40px;
+  margin-top: 5px;
+}
+
 .error-input {
   border: 1px solid red;
 }
