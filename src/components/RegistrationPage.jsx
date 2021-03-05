@@ -35,7 +35,7 @@ const RegistrationPage = () => {
     e.preventDefault();
 
     axios
-      .post("https://603bb33df4333a0017b66d36.mockapi.io/api/v1/login", {
+      .post("https://603bb33df4333a0017b66d36.mockapi.io/api/v1/registration", {
         username: email,
         password,
       })
