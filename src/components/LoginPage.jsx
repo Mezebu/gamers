@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import cx from "classnames";
+import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
+import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import { Link, useHistory } from "react-router-dom";
+
 import SignInLogo from "../assets/images/SignInLogo.png";
 import LoginQuotes from "../assets/images/LoginQuotes.png";
 import JoyStick from "../assets/images/JoyStick.png";
-import { FcGoogle } from "react-icons/fc";
-import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
-import Button from "react-bootstrap/Button";
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import { saveUserSession, isValidSession } from "../utils/sessions";
+import { isValidEmail } from "../utils/email";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -29,6 +33,7 @@ const LoginPage = () => {
         password,
       })
       .then(function (response) {
+        saveUserSession("home");
         history.push("/dashboard");
         console.log(response);
       })
@@ -36,11 +41,6 @@ const LoginPage = () => {
         console.log(error);
         setSignInError(error.message);
       });
-  };
-
-  const isValidEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
   };
 
   const onEmailChange = (e) => {
@@ -54,6 +54,12 @@ const LoginPage = () => {
     setPassword(value);
     setPasswordValid(value.length > 6);
   };
+
+  useEffect(() => {
+    if (isValidSession()) {
+      history.push("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="login-container">
@@ -126,9 +132,9 @@ const LoginPage = () => {
                 )}
               </label>
               <input
-                className={`login-form-input ${
-                  emailValid ? "" : "error-input"
-                }`}
+                className={cx("login-form-input", {
+                  "error-input": !emailValid && canDisplayEmailError,
+                })}
                 type="text"
                 name="email"
                 placeholder="Enter your email"
@@ -147,9 +153,9 @@ const LoginPage = () => {
                 )}
               </label>
               <input
-                className={`login-form-input ${
-                  passwordValid ? "" : "error-input"
-                }`}
+                className={cx("login-form-input", {
+                  "error-input": !passwordValid && canDisplayPasswordError,
+                })}
                 type="password"
                 name="password"
                 placeholder="Enter your password"

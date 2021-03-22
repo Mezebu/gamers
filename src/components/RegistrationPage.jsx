@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link, useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
+import cx from "classnames";
+
 import Console from "../assets/images/Console.png";
 import Rectangle from "../assets/images/Rectangle.png";
 import Logo from "../assets/images/Logo.png";
 import Group from "../assets/images/Group.png";
 import Quotes from "../assets/images/Quotes.png";
 import LeftIcon from "../assets/images/LeftIcon.png";
-import { IoIosArrowBack } from "react-icons/io";
-import { Link, useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import axios from "axios";
+import { isValidEmail } from "../utils/email";
 
 const RegistrationPage = () => {
   const history = useHistory();
@@ -40,6 +43,7 @@ const RegistrationPage = () => {
         password,
       })
       .then(function (response) {
+        localStorage.setItem("user", "home");
         history.push("/success");
         console.log(response);
       })
@@ -47,11 +51,6 @@ const RegistrationPage = () => {
         console.log(error);
         setSignInError(error.message);
       });
-  };
-
-  const isValidEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
   };
 
   const onEmailChange = (e) => {
@@ -71,6 +70,13 @@ const RegistrationPage = () => {
     setConfirmPassword(value);
     setConfirmPasswordValid(password === value);
   };
+
+  useEffect(() => {
+    const validSession = !!localStorage.getItem("user");
+    if (validSession) {
+      history.push("/dashboard");
+    }
+  }, []);
 
   return (
     <>
@@ -121,7 +127,9 @@ const RegistrationPage = () => {
                   )}
                 </label>
                 <input
-                  className={`form-input ${emailValid ? "" : "error-input"}`}
+                  className={cx("form-input", {
+                    "error-input": !emailValid && canDisplayEmailError,
+                  })}
                   type="text"
                   name="email"
                   placeholder="Enter your email"
@@ -142,7 +150,9 @@ const RegistrationPage = () => {
                   )}
                 </label>
                 <input
-                  className={`form-input ${passwordValid ? "" : "error-input"}`}
+                  className={cx("form-input", {
+                    "error-input": !passwordValid && canDisplayPasswordError,
+                  })}
                   type="password"
                   name="password"
                   placeholder="Enter your password"
@@ -163,9 +173,10 @@ const RegistrationPage = () => {
                   )}
                 </label>
                 <input
-                  className={`form-input ${
-                    confirmPasswordValid ? "" : "error-input"
-                  }`}
+                  className={cx("form-input", {
+                    "error-input":
+                      !confirmPasswordValid && canDisplayConfirmPasswordError,
+                  })}
                   type="password"
                   name="confirmpassword"
                   placeholder="Repeat password"
