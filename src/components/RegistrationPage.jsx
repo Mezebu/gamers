@@ -76,7 +76,7 @@ const RegistrationPage = () => {
     if (validSession) {
       history.push("/dashboard");
     }
-  }, []);
+  });
 
   return (
     <>

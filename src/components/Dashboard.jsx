@@ -9,7 +9,7 @@ const Dashboard = () => {
     if (!isValidSession()) {
       history.push("/");
     }
-  }, []);
+  });
 
   const logOut = () => {
     logOutSession();

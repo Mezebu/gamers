@@ -59,7 +59,7 @@ const LoginPage = () => {
     if (isValidSession()) {
       history.push("/dashboard");
     }
-  }, []);
+  });
 
   return (
     <div className="login-container">
