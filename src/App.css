@@ -406,7 +406,7 @@ html {
 }
 
 .reg-network-error-message {
-  color: red;
+  color: rgb(253, 10, 10);
   font-size: 13px;
   margin-left: 40px;
   margin-top: 5px;
