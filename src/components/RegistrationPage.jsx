@@ -111,7 +111,7 @@ const RegistrationPage = () => {
               </Link>
             </div>
             <form onSubmit={onSubmit} className="form">
-              <div className="form-text">
+              <div className="form-text" style={{ color: "black" }}>
                 <h3>Register Individual Account!</h3>
                 <p>
                   For the purpose of gamers regulation, your
