@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { isValidSession, logOutSession } from "../utils/sessions";
 
-import Drawer from "./Drawer";
-
 const Dashboard = () => {
   const history = useHistory();
 
@@ -21,7 +19,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Drawer />
       <p>Dashboard</p>
       <Button type="submit" variant="primary" onClick={logOut}>
         Log Out
